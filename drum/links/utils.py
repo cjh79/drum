@@ -41,7 +41,7 @@ def order_by_score(queryset, score_fields, date_field, reverse=True):
     else:
         for obj in queryset:
             age = (now() - getattr(obj, date_field)).total_seconds()
-            score_fields_sum = sum([getattr(obj, f) for f in score_fields])
+            score_fields_sum = sum(getattr(obj, f) for f in score_fields)
             score = score_fields_sum / pow(age, scale)
             setattr(obj, "score", score)
         return sorted(queryset, key=lambda obj: obj.score, reverse=reverse)

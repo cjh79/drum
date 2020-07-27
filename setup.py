@@ -77,8 +77,8 @@ try:
         ])
 
 finally:
-    for e in exclude:
-        if exclude[e] is not None:
+    for e, value in exclude.items():
+        if value is not None:
             data, stat = exclude[e]
             try:
                 with open(e, "w") as f:
